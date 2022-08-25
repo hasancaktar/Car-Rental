@@ -9,26 +9,55 @@ namespace UIConsole
     {
         static void Main(string[] args)
         {
-            CarAddTest();
-            GetAllTest();
-            GetCarsDetailsTest();
+            // CarAddTest();
+            // GetAllTest();
+              GetCarsDetailsTest();
+            // CarDeleteTest();
+            //CarUpdateTest();
+        }
+
+        private static void CarUpdateTest()
+        {
+            CarManager carManager = new CarManager(new EfCarDal());
+            carManager.Update(new Car { Id = 5, BrandId = 2, ColorId = 2, ModelYear = 2012, DailyPrice = 650, Description = "ikinci el" });
+        }
+
+        private static void CarDeleteTest()
+        {
+            CarManager carManager = new CarManager(new EfCarDal());
+            carManager.Delete(new Car { Id = 5 });
+            
+            
+            foreach (var car in carManager.GetCarsDetails().Data)
+            {
+                Console.WriteLine(car.BrandName + " " + car.ColorName + " " + car.CarId);
+            }
 
         }
 
         private static void GetCarsDetailsTest()
         {
             CarManager carManager = new CarManager(new EfCarDal());
-            foreach (var car in carManager.GetCarsDetails())
+            var result = carManager.GetCarsDetails();
+            if (result.Success == true)
             {
-                Console.WriteLine(car.BrandName + " : " + car.ColorName + " : " + car.CarId);
+                foreach (var car in carManager.GetCarsDetails().Data)
+                {
+                    Console.WriteLine(car.BrandName + " : " + car.ColorName + " : " + car.CarId);
+                }
             }
+            else
+            {
+                Console.WriteLine(result.Message);
+            }
+
         }
 
         private static void GetAllTest()
         {
             CarManager carManager = new CarManager(new EfCarDal());
 
-            foreach (var car in carManager.GetAll())
+            foreach (var car in carManager.GetAll().Data)
             {
                 Console.WriteLine(car.BrandId);
 
@@ -48,7 +77,7 @@ namespace UIConsole
                 ModelYear = 2020
             });
 
-            foreach (var car in carManager.GetCarsDetails())
+            foreach (var car in carManager.GetCarsDetails().Data)
             {
                 Console.WriteLine(car.BrandName + " " + car.ColorName + " " + car.CarId);
             }

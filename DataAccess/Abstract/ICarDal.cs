@@ -11,12 +11,8 @@ namespace DataAccess.Abstract
 {
     public interface ICarDal : IEntityRepository<Car>
     {
-        //List<Car> GetAll();
-        //List<Car> GetByBrandId(int brandId);
-        //void Add(Car car);
-        //void Delete(Car car);
-        //void Update(Car car);
-        List<CarDetailDTo> GetCarsDetails();
+        //BURAYA KENDİ ÖZEL METODLARIMIZI YAZABİLİRİZ
+        List<CarDetailDto> GetCarsDetails();
        
 
 

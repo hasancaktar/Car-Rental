@@ -12,18 +12,18 @@ using Core.DataAccess.EntityFamework;
 
 namespace DataAccess.Concrete.EntityFramework
 {
-    public class EfCarDal : EfEntityRepositoryBase<Car, CarsContext>, ICarDal
+    public class EfCarDal : EfEntityRepositoryBase<Car, CarContext>, ICarDal
     {
-        public List<CarDetailDTo> GetCarsDetails()
+        public List<CarDetailDto> GetCarsDetails()
         {
-            using (CarsContext context = new CarsContext())
+            using (CarContext context = new CarContext())
             {
                 var result = from ca in context.Cars
                              join cd in context.Colors
                              on ca.ColorId equals cd.Id
                              join cb in context.Brands
                              on ca.BrandId equals cb.Id
-                             select new CarDetailDTo { CarId = ca.Id, BrandName = cb.BrandName, ColorName = cd.ColorName };
+                             select new CarDetailDto { CarId = ca.Id, BrandName = cb.BrandName, ColorName = cd.ColorName };
 
                 return result.ToList();
             }
