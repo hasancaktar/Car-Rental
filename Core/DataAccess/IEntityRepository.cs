@@ -6,9 +6,9 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DataAccess.Abstract
+namespace Core.DataAccess
 {
-    public interface IEntityRepository<T> where T: class, IEntity,new()
+    public interface IEntityRepository<T> where T : class, IEntity, new()
     {
         //filtrelemek için.  Expression sorguyu ayrı ayrı yazmadan tek kodda istenilen filtreleri girmemizi sağlıyor. null olması filtre vermeye de biliriz demek
         List<T> GetAll(Expression<Func<T, bool>> filter = null);

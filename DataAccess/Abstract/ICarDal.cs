@@ -1,4 +1,5 @@
-﻿using Entities.Concrete;
+﻿using Core.DataAccess;
+using Entities.Concrete;
 using Entities.DTOs;
 using System;
 using System.Collections.Generic;
@@ -15,7 +16,7 @@ namespace DataAccess.Abstract
         //void Add(Car car);
         //void Delete(Car car);
         //void Update(Car car);
-        List<CarDTO> GetCarsDetails();
+        List<CarDetailDTo> GetCarsDetails();
        
 
 
