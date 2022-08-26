@@ -8,8 +8,11 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DataAccess.Concrete.EntityFramework
 {
+
     public class CarContext:DbContext
     {
+        //bu metod projenin hangi veritabanı ile ilişkii olduğunu belirteceğimiz yer
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=CarsDB;Trusted_Connection=true");
