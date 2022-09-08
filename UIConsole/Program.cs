@@ -17,7 +17,7 @@ namespace UIConsole
             //UserAddTest();
            // CustomerAddTest();
            RentalManager rentalManager = new RentalManager(new EfRentalDal());
-           rentalManager.Add(new Rentals
+           rentalManager.Add(new Rental
            {
                CarId = 1,
                ReturnDate = new DateTime(2022),
@@ -43,7 +43,7 @@ namespace UIConsole
         private static void UserAddTest()
         {
             UserManager usersManager = new UserManager(new EfUserDal());
-            usersManager.Add(new Users
+            usersManager.Add(new User
             {
                 Id = 1,
                 FirstName = "Hasan",

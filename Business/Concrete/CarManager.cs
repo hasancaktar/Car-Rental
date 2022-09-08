@@ -9,6 +9,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Business.ValidationRules.FluentValidation;
+using Core.Aspects.Autofac.Validation;
 
 namespace Business.Concrete
 {
@@ -21,15 +23,10 @@ namespace Business.Concrete
             _carDal = carDal;
         }
 
+        [ValidationAspect(typeof(CarValidator))]
         public IResult Add(Car car)
         {
-            if (car.ModelYear < 2)
-            {
-                return new ErrorResult(Messages.CarNameInvalid);
-            }
             _carDal.Add(car);
-
-
             return new SuccessResult(Messages.CarAdded);
         }
         public void Delete(Car car)
@@ -50,6 +47,11 @@ namespace Business.Concrete
                 return new ErrorDataResult<List<Car>>(Messages.MaintenanceTime);
             }
             return new SuccessDataResult<List<Car>>(_carDal.GetAll(),message:Messages.CarListed);
+        }
+
+        public IDataResult<List<Car>> GetById(int id)
+        {
+            return new SuccessDataResult<List<Car>>(_carDal.GetAll(c=>c.Id==id));
         }
 
         public IDataResult<List<Car>> GetCarsByBrandId(int brandId)
