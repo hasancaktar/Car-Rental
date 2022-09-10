@@ -25,7 +25,7 @@ namespace Business.Concrete
             _fileHelper=fileHelper;
         }
 
-        public IResult Add(CarImage carImage, IFormFile formFile)
+        public IResult Add(CarImage carImage, IFormFile file)
         {
             IResult result = BusinessRules.Run(CheckCarImageLimit(carImage.CarId));
             if (result != null)
@@ -33,7 +33,7 @@ namespace Business.Concrete
                 return result;
             }
 
-            carImage.CarPath = _fileHelper.Upload(formFile, PathConstants.imagesPath);
+            carImage.CarPath = _fileHelper.Upload(file, PathConstants.imagesPath);
             carImage.Date= DateTime.Now;
 
             _carImageDal.Add(carImage);
@@ -47,10 +47,10 @@ namespace Business.Concrete
             return new SuccessResult(Messages.SuccessImageDelete);
         }
 
-        public IResult Update(CarImage carImage, IFormFile formFile)
+        public IResult Update(CarImage carImage, IFormFile file)
         {
            
-            _fileHelper.Update(formFile, PathConstants.imagesPath + carImage.CarPath, PathConstants.imagesPath);
+            _fileHelper.Update(file, PathConstants.imagesPath + carImage.CarPath, PathConstants.imagesPath);
             _carImageDal.Update(carImage);
             return new SuccessResult(Messages.SuccessImageUpdate);
         }
