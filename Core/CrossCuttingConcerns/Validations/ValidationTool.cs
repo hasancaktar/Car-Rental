@@ -13,7 +13,7 @@ namespace Core.CrossCuttingConcerns.Validations
         //static bir sınıfta statik metod olmak zorunda
         public static void Validate(IValidator validator, object entity)
         {
-            var context = new ValidationContext<object>(entity);
+            var context = new ValidationContext<object>(entity); // halloldu sanırım. evet başka herhangi bir sorun var mı,? şuan yok hocanın verdiği ödevi yapıyorum. resim ekleme bi de burdaki sorun neymiş neden aspecte bişeyler ekledin anlatır mısın tabii
             var result = validator.Validate(context);
             if (!result.IsValid)
             {

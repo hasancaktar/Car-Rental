@@ -10,7 +10,7 @@ namespace Business.ValidationRules.FluentValidation
 {
     public class CarValidator : AbstractValidator<Car>
     {
-        CarValidator()
+        public CarValidator()
         {
             RuleFor(c=>c.DailyPrice).NotEmpty();
             RuleFor(c => c.Description).MinimumLength(2).WithMessage("Açıklama en az 2 karakter olmalı");

@@ -29,15 +29,18 @@ namespace Business.Concrete
             _carDal.Add(car);
             return new SuccessResult(Messages.CarAdded);
         }
-        public void Delete(Car car)
+        public IResult Delete(Car car)
         {
             
                 _carDal.Delete(car);
-           
+                return new SuccessResult(Messages.CarDeleted);
         }
-        public void Update(Car car)
+
+        public IResult Update(Car car)
         {
             _carDal.Update(car);
+            return new SuccessResult(Messages.CarDeleted);
+
         }
 
         public IDataResult<List<Car>> GetAll()

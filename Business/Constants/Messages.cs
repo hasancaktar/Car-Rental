@@ -11,6 +11,8 @@ namespace Business.Constants
         
         
         public static string CarAdded = "Araba Eklendi";
+        public static string CarUpdated = "Araba Güncellendi";
+        public static string CarDeleted = "Araba Silindi";
         public static string CarNameInvalid = "Araba ismi geçersiz";
         public static string MaintenanceTime = "Sistem bakımda";
         public static string CarListed = "Arabalar listelendi";
@@ -38,12 +40,16 @@ namespace Business.Constants
         public static string ErrorGetRentalDetail = "Kiralama bilgisi getirme başarısız";
         public static string GetRenralDetail = "Kiralama bilgisi getirildi";
 
+        public static string SuccessImageUpload = "Resim başarıyla yüklendi";
+        public static string ErrorImageUpload = "Resim yüklenirken hata oluştu";
 
+        public static string SuccessImageDelete = "Resim başarıyla silindi";
+        public static string ErrorImageDelete = "Resim silinirken hata oluştu";
 
+        public static string SuccessImageUpdate = "Resim başarıyla güncellendi";
+        public static string ErrorImageUpdate = "Resim güncellenirken hata oluştu";
 
-
-
-
+        public static string ImageLimitExceeded = "Resim limiti aşıldı";
     }
 
 }

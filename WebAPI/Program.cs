@@ -24,7 +24,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory());
-builder.Host.ConfigureContainer<ContainerBuilder>(builder => { builder.RegisterModule(new AutofacBusinessModule()); });
+builder.Host.ConfigureContainer<ContainerBuilder>(builder =>  builder.RegisterModule(new AutofacBusinessModule()));
 
 
 var app = builder.Build();
@@ -33,7 +33,8 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
-    app.UseSwaggerUI();
+    app.UseSwaggerUI(); //Þimdi þöyle ki ÂOP yapacaðýmýzý bildirmemiz gerekiyor. bunu normalde .net 5 veya 3 te starup içerisinde bildiriyorduk projeye. fakat .net 6 da startup yok. bu sebeple buraya yazmamýz gerekiyor gerekli kodlarý.
+    //Ben bi 3 dakika araþtýrayým buraya yazmaya çalýþalým. ardýndan çalýþýrsa eðer neyi neden yaptýðýmýzý anlatayým sana olur mu? olur peki bir 3 dakika bakayým ben 
 }
 
 app.UseHttpsRedirection();
