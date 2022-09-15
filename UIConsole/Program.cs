@@ -11,22 +11,25 @@ namespace UIConsole
         {
             // CarAddTest();
             // GetAllTest();
-           // GetCarsDetailsTest();
+            GetCarsDetailsTest();
             // CarDeleteTest();
             //CarUpdateTest();
             //UserAddTest();
            // CustomerAddTest();
-           RentalManager rentalManager = new RentalManager(new EfRentalDal());
-           rentalManager.Add(new Rental
-           {
-               CarId = 1,
-               ReturnDate = new DateTime(2022),
-               CustomerId = 1,
-               Id = 1,
-               RentDate = new DateTime(2021)
+           RentalAdd();
+        }
 
-           });
-
+        private static void RentalAdd()
+        {
+            RentalManager rentalManager = new RentalManager(new EfRentalDal());
+            rentalManager.Add(new Rental
+            {
+                CarId = 1,
+                ReturnDate = new DateTime(2022),
+                CustomerId = 1,
+                Id = 1,
+                RentDate = new DateTime(2021)
+            });
         }
 
         private static void CustomerAddTest()

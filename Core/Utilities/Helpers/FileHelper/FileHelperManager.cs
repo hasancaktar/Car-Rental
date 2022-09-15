@@ -37,7 +37,7 @@ namespace Core.Utilities.Helpers.FileHelper
                 {
                     Directory.CreateDirectory(root);
                 }
-                string extension = Path.GetExtension(root);
+                string extension = Path.GetExtension(file.FileName);
                 string guid = GuidHelperManager.CreateGuid();
                 string filePath = guid + extension;
 

@@ -11,7 +11,7 @@ namespace Entities.Concrete
     {
         public int Id { get; set; }
         public int CarId { get; set; }
-        public string CarPath { get; set; }
+        public string? CarPath { get; set; }
         public DateTime Date { get; set; }
 
     }

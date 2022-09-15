@@ -75,6 +75,11 @@ namespace Business.Concrete
             return new SuccessDataResult<List<CarImage>>(_carImageDal.GetAll(c => c.CarId == carId));
         }
 
+        public IResult GetById(int carId)
+        {
+            throw new NotImplementedException();
+        }
+
         private IResult CheckCarImageLimit(int carId)
         {
             var result = _carImageDal.GetAll(c => c.CarId == carId).Count;

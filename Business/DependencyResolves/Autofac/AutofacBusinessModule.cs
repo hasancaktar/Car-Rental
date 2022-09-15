@@ -47,7 +47,7 @@ namespace Business.DependencyResolves.Autofac
             builder.RegisterAssemblyTypes(assembly).AsImplementedInterfaces().EnableInterfaceInterceptors(new ProxyGenerationOptions()
             {
                 Selector = new AspectInterceptorSelector()
-            }).SingleInstance(); // Bu taradığım satırdaki kodlar tam olarak şu işi yapıyor => bizim aspect Interceptor yapısını devereye almamızı sağlıyor. kabaca böyle diyebilirim. yukarıda uygulamamızda gerekli hocam müsaitsen seni arayıp anlatsam olur mu? b olur telefondan mı
+            }).SingleInstance(); 
 
         }
     }

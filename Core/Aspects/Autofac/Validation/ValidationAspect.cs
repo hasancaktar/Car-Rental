@@ -11,7 +11,7 @@ using FluentValidation;
 
 namespace Core.Aspects.Autofac.Validation
 {
-    public class ValidationAspect : MethodInterception //ascept
+    public class ValidationAspect : MethodInterception //aspect
     {
         private Type _validatorType;
 
