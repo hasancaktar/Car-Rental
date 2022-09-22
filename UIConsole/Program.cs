@@ -52,7 +52,7 @@ namespace UIConsole
                 FirstName = "Hasan",
                 LastName = "Sancaktar",
                 Email = "lordhasan@gmail.com",
-                Password = "123456"
+                //Password = "123456"
             });
         }
 

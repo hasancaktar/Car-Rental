@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Entities.Concrete;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,8 +9,9 @@ namespace Business.Constants
 {
     public class Messages
     {
-        
-        
+        public static  string UserAlreadyExist = "Kullanıcı zaten mevcut";
+        public static string UserRegistered = "Kullanıcı kaydedildi";
+
         public static string CarAdded = "Araba Eklendi";
         public static string CarUpdated = "Araba Güncellendi";
         public static string CarDeleted = "Araba Silindi";
@@ -50,6 +52,10 @@ namespace Business.Constants
         public static string ErrorImageUpdate = "Resim güncellenirken hata oluştu";
 
         public static string ImageLimitExceeded = "Resim limiti aşıldı";
+        public static string UserNotFound = "Kullanıcı bulunamadı";
+        public static string PasswordError = "Hatalı şifre";
+        public static string LoginSaccess = "Giriş başarılı";
+        public static string AccessTokenCreated = "Token oluşturuldu";
     }
 
 }

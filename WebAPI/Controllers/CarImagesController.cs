@@ -24,7 +24,7 @@ namespace WebAPI.Controllers
             {
                 return Ok(result);
             }
-            return BadRequest();
+            return BadRequest(result);
         }
 
         [HttpPost("delete")]
@@ -33,10 +33,10 @@ namespace WebAPI.Controllers
             var result = _carImageService.Delete(carImage);
             if (result.Success)
             {
-                return Ok();
+                return Ok(result);
             }
 
-            return BadRequest();
+            return BadRequest(result);
 
         }
 
@@ -46,10 +46,10 @@ namespace WebAPI.Controllers
             var result= _carImageService.Update(carImage, file);
             if (result.Success)
             {
-                return Ok();
+                return Ok(result);
             }
 
-            return BadRequest();
+            return BadRequest(result);
         }
 
         [HttpGet("getall")]
@@ -58,10 +58,10 @@ namespace WebAPI.Controllers
             var result = _carImageService.GetAll();
             if (result.Success)
             {
-                return Ok();
+                return Ok(result);
             }
 
-            return BadRequest();
+            return BadRequest(result);
         }
 
         [HttpGet("getbycarid")]
@@ -70,10 +70,10 @@ namespace WebAPI.Controllers
             var result = _carImageService.GetByCarId(carId);
             if (result.Success)
             {
-                return Ok();
+                return Ok(result);
             }
 
-            return BadRequest();
+            return BadRequest(result);
         }
 
         [HttpGet("getbyimageid")]
@@ -82,10 +82,10 @@ namespace WebAPI.Controllers
             var result = _carImageService.GetByImageId(imageId);
             if (result.Success)
             {
-                return Ok();
+                return Ok(result);
             }
 
-            return BadRequest();
+            return BadRequest(result);
         }
 
 
