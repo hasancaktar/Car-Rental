@@ -21,6 +21,8 @@ builder.Services.AddControllers();
 //builder.Services.AddSingleton<ICarService, CarManager>();
 //builder.Services.AddSingleton<ICarDal, EfCarDal>();
 
+builder.Services.AddCors();
+
 IConfiguration configuration = builder.Configuration;
 var tokenOptions = configuration.GetSection("TokenOptions").Get<TokenOptions>();
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
@@ -61,7 +63,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI(); 
 }
-
+app.UseCors(builder=>builder.WithOrigins("http://localhost:4200", "http://localhost:4201").AllowAnyHeader());
 app.UseHttpsRedirection();
 app.UseAuthentication();
 app.UseAuthorization();

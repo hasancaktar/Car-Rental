@@ -15,16 +15,17 @@ namespace Core.Utilities.Security.Hashing
             {
                 //salt değeri
                 passwordSalt = hmac.Key;
+
                 passwordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(password));
             }
         }
-
         //sonradan sisteme girmek isteyen kişinin verdiği password'un bizim veri kaynağımızdaki hash ile ilgili salta göre eşleşip eşleşmediğine bakıyor 
-        public static bool VeryfPasswordHash(string password, byte[] passwordHash, byte[] passwordSalt)
+        public static bool VerifyPasswordHash(string password, byte[] passwordHash, byte[] passwordSalt)
         {
+
             using (var hmac = new System.Security.Cryptography.HMACSHA512(passwordSalt))
             {
-                //buradaki compute hash yukarıda verdiğimiz passwordsaltı hesaba alarak yapıyor
+                //bıradaki compute hash yukarıda verdiğimiz passwordsaltı hesaba alarak yapıyor
                 var computedHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(password));
                 for (int i = 0; i < computedHash.Length; i++)
                 {
@@ -33,8 +34,9 @@ namespace Core.Utilities.Security.Hashing
                         return false;
                     }
                 }
+                return true;
             }
-            return true;
+
         }
     }
 

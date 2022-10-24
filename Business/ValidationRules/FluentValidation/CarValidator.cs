@@ -14,7 +14,7 @@ namespace Business.ValidationRules.FluentValidation
         {
             RuleFor(c=>c.DailyPrice).NotEmpty();
             RuleFor(c => c.Description).MinimumLength(2).WithMessage("Açıklama en az 2 karakter olmalı");
-            RuleFor(p => p.Description).Must(StartWithA).WithMessage("Ürünler A harfi ile başlamalı");
+            //RuleFor(p => p.Description).Must(StartWithA).WithMessage("Ürünler A harfi ile başlamalı");
 
 
             // RuleFor(c => c.ModelYear).GreaterThan()

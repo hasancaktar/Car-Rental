@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Business.Constants;
 using Castle.DynamicProxy;
+using Core.Extensions;
 using Core.Utilities.Interceptors;
 using Core.Utilities.IoC;
 using Microsoft.AspNetCore.Http;
@@ -25,6 +27,20 @@ namespace Business.BusinessAspects.Autofac
             _httpContextAccessor = ServiceTool.ServiceProvider.GetService<IHttpContextAccessor>();
         }
 
-        public void OnBefore(IInvocation invocation)
+        protected override void OnBefore(IInvocation invocation)
         {
-            var roleClaims = _httpContextAccessor.HttpContext.User.Claims; } } }
+            var roleClaims = _httpContextAccessor.HttpContext.User.ClaimRoles();
+            foreach (var role in _roles)         
+            {
+                if (roleClaims.Contains(role))
+                {
+                    return;
+                }
+            }
+
+            throw new Exception(Messages.AuthorizationDenied);
+
+        }
+    }
+
+}

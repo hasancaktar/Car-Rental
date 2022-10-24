@@ -23,51 +23,52 @@ namespace Core.Utilities.Security.Jwt
         public JwtHelper(IConfiguration configuration)
         {
             Configuration = configuration;
-            _tokenOptions =
-                Configuration.GetSection("TokenOptions")
-                    .Get<TokenOptions>(); //section appsettings içindeki json modelde bulunan bir model section dur
+            _tokenOptions = Configuration.GetSection("TokenOptions").Get<TokenOptions>(); //section appsettings içindeki json modelde bulunan bir model section dur
 
         }
-
+        //verilen user ve claim bilgilerine göre bir tane token oluşturuyor
         public AccessToken CreateToken(User user, List<OperationClaim> operationClaims)
         {
             _accessTokenExpiration = DateTime.Now.AddMinutes(_tokenOptions.AccessTokenExpiration);
-            var securityKey = SecurityKeyHelper.CreateSecurityKey(_tokenOptions.SecurityKey);
-            var signingCredentirals = SigningCredentialsHelper.CreateSigningCredentials(securityKey);
-            var jwt = CreateJwtSecurityToken(_tokenOptions, user, signingCredentirals, operationClaims);
-            var jwtSecurityTokenHendler = new JwtSecurityTokenHandler();
-            var token = jwtSecurityTokenHendler.WriteToken(jwt);
+            var securityKey = SecurityKeyHelper.CreateSecurityKey(_tokenOptions.SecurityKey);//tokenı oluşturacak güvenilk anahtari, hangi algoritmayı ve anahtarı kullanacağını da alt satır ayarlıyor
+            var signingCredentials = SigningCredentialsHelper.CreateSigningCredentials(securityKey);
+            var jwt = CreateJwtSecurityToken(_tokenOptions, user, signingCredentials, operationClaims);
+            var jwtSecurityTokenHandler = new JwtSecurityTokenHandler();
+            var token = jwtSecurityTokenHandler.WriteToken(jwt);
+
             return new AccessToken
             {
                 Token = token,
                 Expiration = _accessTokenExpiration
             };
+
         }
 
-        private JwtSecurityToken CreateJwtSecurityToken(TokenOptions tokenOptions, User user,
+        public JwtSecurityToken CreateJwtSecurityToken(TokenOptions tokenOptions, User user,
             SigningCredentials signingCredentials, List<OperationClaim> operationClaims)
-
         {
+            // altta ver,len bilgilere göre token oluşturmaya yarıyor
             var jwt = new JwtSecurityToken(
                 issuer: tokenOptions.Issuer,
                 audience: tokenOptions.Audience,
                 expires: _accessTokenExpiration,
-                notBefore: DateTime.Now,
+                notBefore: DateTime.Now,//şuandan önce bir zaman değeri verilemez
                 claims: SetClaims(user, operationClaims),
-                signingCredentials: signingCredentials);
+                signingCredentials: signingCredentials
+            );
             return jwt;
         }
 
         private IEnumerable<Claim> SetClaims(User user, List<OperationClaim> operationClaims)
         {
             var claims = new List<Claim>();
+            claims.AddNameIdentifier(user.Id.ToString());
             claims.AddMail(user.Email);
             claims.AddName($"{user.FirstName} {user.LastName}");
-            claims.AddRoles(operationClaims.Select(c=>c.Name).ToArray());
-            
+            claims.AddRoles(operationClaims.Select(c => c.Name).ToArray());
+
             return claims;
         }
-
     }
 }
 
